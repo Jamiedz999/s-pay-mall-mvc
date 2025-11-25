@@ -123,7 +123,7 @@
             <testResource>
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
-                <includes>
+                <includes>✍
                     <include>**/**</include>
                 </includes>
             </testResource>
