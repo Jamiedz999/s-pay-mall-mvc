@@ -1,6 +1,6 @@
 package com.jamie.service.weixin;
 
-import com.jamie.domain.po.WeixinTemplateMessageVO;
+import com.jamie.domain.vo.WeixinTemplateMessageVO;
 import com.jamie.domain.req.WeixinQrCodeReq;
 import com.jamie.domain.res.WeixinQrCodeRes;
 import com.jamie.domain.res.WeixinTokenRes;

@@ -1,11 +1,11 @@
 package com.jamie.service.impl;
 
 import com.google.common.cache.Cache;
-import com.jamie.domain.po.WeixinTemplateMessageVO;
+import com.jamie.domain.vo.WeixinTemplateMessageVO;
 import com.jamie.domain.req.WeixinQrCodeReq;
 import com.jamie.domain.res.WeixinQrCodeRes;
 import com.jamie.domain.res.WeixinTokenRes;
-import com.jamie.service.weixin.ILoginService;
+import com.jamie.service.ILoginService;
 import com.jamie.service.weixin.IWeixinApiService;
 
 import org.springframework.beans.factory.annotation.Value;

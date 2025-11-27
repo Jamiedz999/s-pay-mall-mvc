@@ -4,7 +4,7 @@ package com.jamie.controller;
 import com.jamie.common.weixin.MessageTextEntity;
 import com.jamie.common.weixin.SignatureUtil;
 import com.jamie.common.weixin.XmlUtil;
-import com.jamie.service.weixin.ILoginService;
+import com.jamie.service.ILoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;

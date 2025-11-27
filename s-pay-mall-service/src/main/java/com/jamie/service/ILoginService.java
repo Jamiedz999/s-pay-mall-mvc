@@ -1,4 +1,4 @@
-package com.jamie.service.weixin;
+package com.jamie.service;
 
 import java.io.IOException;
 

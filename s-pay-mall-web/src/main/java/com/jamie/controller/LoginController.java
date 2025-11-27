@@ -3,7 +3,7 @@ package com.jamie.controller;
 
 import com.jamie.common.constants.Constants;
 import com.jamie.common.response.Response;
-import com.jamie.service.weixin.ILoginService;
+import com.jamie.service.ILoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
