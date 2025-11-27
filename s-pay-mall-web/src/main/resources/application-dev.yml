@@ -12,7 +12,9 @@ weixin:
   config:
     originalid: gh_542c83b0bbb8
     token: qqss
-
+    app-id: wx4f8c1fcc922bef9c
+    app-secret: ac6471f3b1c872241501772568e2d616
+    template-id: Lp0QXstcWXwmx5dxf12e9oiufyE0BC6MPu_Wjv0_FpU
 
 #spring:
 #  datasource:
