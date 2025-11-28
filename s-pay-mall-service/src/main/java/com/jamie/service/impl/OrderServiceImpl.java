@@ -1,9 +1,11 @@
 package com.jamie.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.google.common.eventbus.EventBus;
 import com.jamie.common.constants.Constants;
 import com.jamie.dao.IOrderDao;
 import com.jamie.domain.po.PayOrder;
@@ -15,14 +17,19 @@ import com.jamie.service.rpc.ProductRPC;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
+
 public class OrderServiceImpl implements IOrderService {
 
     @Value("${alipay.notify_url}")
@@ -38,6 +45,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Resource
     private AlipayClient alipayClient;
+
+    @Resource
+    private EventBus eventBus;
 
 
     @Override
@@ -89,6 +99,32 @@ public class OrderServiceImpl implements IOrderService {
                 .payUrl(payOrder.getPayUrl())
                 .build();
 
+    }
+
+    @Override
+    public void changeOrderPaySuccess(String orderId) {
+        PayOrder payOrderReq = new PayOrder();
+        payOrderReq.setOrderId(orderId);
+        payOrderReq.setStatus(Constants.OrderStatusEnum.PAY_SUCCESS.getCode());
+        orderDao.changeOrderPaySuccess(payOrderReq);
+
+
+        eventBus.post(JSON.toJSONString(payOrderReq));
+    }
+
+    @Override
+    public List<String> queryNoPayNotifyOrder() {
+        return orderDao.queryNoPayNotifyOrder();
+    }
+
+    @Override
+    public List<String> queryTimeoutCloseOrderList() {
+        return orderDao.queryTimeoutCloseOrderList();
+    }
+
+    @Override
+    public boolean changeOrderClose(String orderId) {
+        return orderDao.changeOrderClose(orderId);
     }
 
     private PayOrder doPrepayOrder(String productId, String productName, String orderId, BigDecimal totalAmount) throws AlipayApiException {
